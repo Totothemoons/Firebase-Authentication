@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Firebase Authentication</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+</head>
+<body>
+    
+    <div class="container my-3">
+        <div id="form-area">
+            <h2>Create Account</h2>
+            <form id="registerForm">
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" placeholder="Enter your email" class="form-control" id="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" placeholder="Enter your password" class="form-control" id="password" required>
+                </div>
+                <div id="Error-Text"></div>
+                <div class="form-group my-3">
+                    <button type="submit" class="btn btn-primary">Create</button>
+                </div>
+            </form>
+                <!-- Add Google  -->
+            <div id="google">
+                <button type="button" id="google-login-btn" class="google-button">
+                    <i class="fab fa-googke"></i> Login with Google
+                </button>
+            </div>
+            <hr>
+            <form id="loginForm">
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" placeholder="Enter your email" class="form-control" id="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" placeholder="Enter your password" class="form-control" id="password" required>
+                </div>
+                <div id="Error-Login"></div>
+                <div class="form-group my-3">
+                    <button type="submit" class="btn btn-success">Sign-In</button>
+                </div>
+            </form>
+        </div>
+        <div id="profile">
+            <h3 id="welcome">Hello User</h3>
+            <button id="Logout" class="btn btn-success">Logout</button>
+        </div>
+    </div>
+
+    <script src="app.js" type="module"></script>
+</body>
+</html>
