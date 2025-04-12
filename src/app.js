@@ -1,6 +1,6 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.0/firebase-app.js";
-import {getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, onAuthStateChanged, signOut, GoogleAuthProvider, signInWithPopup} from "https://www.gstatic.com/firebasejs/11.6.0/firebase-auth.js";
+import {getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, onAuthStateChanged, signOut, GoogleAuthProvider, signInWithPopup, FacebookAuthProvider} from "https://www.gstatic.com/firebasejs/11.6.0/firebase-auth.js";
 const firebaseConfig = {
   apiKey: "AIzaSyC6JnUw7OhzTtf3X168SD7wxL__1qOPyJ0",
   authDomain: "basicfirebase-8dfc9.firebaseapp.com",
@@ -16,6 +16,7 @@ const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 auth.languageCode = 'en';
 const provider = new GoogleAuthProvider();
+const facebook_provider = new FacebookAuthProvider();
 
 
 const form = document.getElementById("registerForm");
@@ -97,7 +98,7 @@ googleLogin.addEventListener('click', function() {
     // The signed-in user info.
     const user = result.user;
     console.log(user);
-    // window.location.href = "./src/logged.html";
+    window.location.href = "./src/logged.html";
 
 
   }).catch((error) => {
@@ -146,4 +147,28 @@ async function loginUser(email, password) {
         }
     }
 }
+
+// Facebook sign in
+document.addEventListener('DOMContentLoaded', function() {
+    const facebookLogin = document.getElementById("facebook-login-btn");
+    facebookLogin.addEventListener("click", function(event) {
+        event.preventDefault();
+        signInWithPopup(auth, facebook_provider)
+            .then(result => {
+                // The Signed-in user info.
+                const user = result.user;
+                console.log(user);
+
+                const credential = FacebookAuthProvider.credentialFromResult(result);
+                const accessToken = credential.accessToken;
+                console.log(credential);
+                console.log(accessToken);
+            }).catch(error => {
+                // Handle Errors here.
+                const errorCode = error.code;
+                const errorMessage = error.message;
+                console.log(errorMessage);
+            });
+    });
+});
 
